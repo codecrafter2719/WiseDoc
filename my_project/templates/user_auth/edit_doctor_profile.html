@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Profile</title>
+</head>
+<body>
+    <h1>Edit Your Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{% url 'doctor_dashboard' %}">Back to Dashboard</a>
+    <div>
+        <p>
+            Want to change your password? <a href="{% url 'password_change' %}">Click here</a>.
+        </p>
+    
+        <a href="{% url 'patient_dashboard' %}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

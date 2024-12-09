@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Step 2 - About You</title>
+</head>
+<body>
+    <h1>Step 2/5 - About You</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ form.speciality.label }}: {{ form.speciality }}</p>
+        <p>{{ form.other_speciality.label }}: {{ form.other_speciality }}</p>
+        <p>{{ form.category.label }}: {{ form.category }}</p>
+
+        <h2>Your Qualification</h2>
+        <div id="qualifications-container"></div>
+        <button type="button" onclick="addQualification()">Add Qualification</button>
+
+        <h2>Your Experience</h2>
+        <div id="experiences-container"></div>
+        <button type="button" onclick="addExperience()">Add Experience</button>
+
+        <input type="hidden" name="qualifications" id="qualifications-field">
+        <input type="hidden" name="experiences" id="experiences-field">
+
+        <button type="submit">Next</button>
+    </form>
+
+    <script>
+        let qualifications = [];
+        let experiences = [];
+    
+        function addQualification() {
+            const degree = prompt("Enter Degree:");
+            const institute = prompt("Enter Institute/University:");
+            if (degree && institute) {
+                qualifications.push({ degree, institute });
+                updateQualifications();
+            }
+        }
+    
+        function updateQualifications() {
+            const container = document.getElementById("qualifications-container");
+            container.innerHTML = qualifications.map(
+                (q, index) => `<p>${index + 1}. Degree: ${q.degree}, Institute: ${q.institute}</p>`
+            ).join('');
+            document.getElementById("qualifications-field").value = JSON.stringify(qualifications);  // Send JSON string
+        }
+    
+        function addExperience() {
+            const designation = prompt("Enter Designation:");
+            const hospital = prompt("Enter Hospital/Clinic:");
+            if (designation && hospital) {
+                experiences.push({ designation, hospital });
+                updateExperiences();
+            }
+        }
+    
+        function updateExperiences() {
+            const container = document.getElementById("experiences-container");
+            container.innerHTML = experiences.map(
+                (e, index) => `<p>${index + 1}. Designation: ${e.designation}, Hospital: ${e.hospital}</p>`
+            ).join('');
+            document.getElementById("experiences-field").value = JSON.stringify(experiences);  // Send JSON string
+        }
+    </script>
+    
+</body>
+</html>

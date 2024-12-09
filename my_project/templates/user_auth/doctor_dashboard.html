@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Doctor Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ doctor.full_name }}</h1>
+    <a href="{% url 'edit_doctor_profile' %}">Edit Profile</a>
+    <h2>Profile Details</h2>
+    <p><strong>Phone:</strong> {{ doctor.phone_no }}</p>
+    <p><strong>Email:</strong> {{ doctor.email }}</p>
+    <p><strong>Speciality:</strong> {{ doctor.speciality }}</p>
+    <p><strong>Category:</strong> {{ doctor.category }}</p>
+    <p><strong>Qualifications:</strong></p>
+    <ul>
+        {% for qualification in doctor.qualifications %}
+        <li>{{ qualification.degree }} - {{ qualification.institute }}</li>
+        {% endfor %}
+    </ul>
+    <p><strong>Experience:</strong></p>
+    <ul>
+        {% for experience in doctor.experiences %}
+        <li>{{ experience.designation }} - {{ experience.hospital }}</li>
+        {% endfor %}
+    </ul>
+    <p><strong>Practice Days:</strong> {{ doctor.practice_days }}</p>
+    <p><strong>Start Time:</strong> {{ doctor.start_time }}</p>
+    <p><strong>End Time:</strong> {{ doctor.end_time }}</p>
+    <p><strong>Fee:</strong> {{ doctor.fee }}</p>
+    <p><strong>Online Days:</strong> {{ doctor.online_days }}</p>
+    <p><strong>Online Start Time:</strong> {{ doctor.online_start_time }}</p>
+    <p><strong>Online End Time:</strong> {{ doctor.online_end_time }}</p>
+    <p><strong>Online Fee:</strong> {{ doctor.online_consultation_fee }}</p>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <div>
+        <h2>Articles</h2>
+        <p>
+            <a href="{% url 'create_article' %}">Write a New Article</a>
+        </p>
+        <p>
+            <a href="{% url 'my_articles' %}">View My Articles</a>
+        </p>
+        <p>
+            <a href="{% url 'all_articles' %}">View All Articles</a>
+        </p>
+
+
+    </div>
+
+</body>
+</html>

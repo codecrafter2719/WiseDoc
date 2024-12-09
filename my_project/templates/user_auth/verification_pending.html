@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Verification Pending</title>
+</head>
+<body>
+    <h1>Your Profile is Under Verification</h1>
+    <p>Please wait for admin approval before you can access your dashboard.</p>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

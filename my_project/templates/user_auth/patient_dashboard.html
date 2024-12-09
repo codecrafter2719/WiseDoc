@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Patient Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ profile.full_name }}</h1>
+    <a href="{% url 'edit_patient_profile' %}">Edit Profile</a>
+    <p>Phone: {{ profile.phone_no }}</p>
+    <p>Email: {{ profile.email }}</p>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</body>
+</html>

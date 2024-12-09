@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Step 4 - Online Clinic Details</title>
+</head>
+<body>
+    <h1>Step 4/5 - Add Online Clinic Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ form.online_days.label }}: {{ form.online_days }}</p>
+        <p>{{ form.online_start_time.label }}: {{ form.online_start_time }}</p>
+        <p>{{ form.online_end_time.label }}: {{ form.online_end_time }}</p>
+        <p>{{ form.online_consultation_fee.label }}: {{ form.online_consultation_fee }}</p>
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

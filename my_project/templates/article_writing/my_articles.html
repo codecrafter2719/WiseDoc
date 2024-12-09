@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Articles</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 16px;
+            margin: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.02);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 12px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .read-more:hover {
+            background-color: #0056b3;
+        }
+        .edit-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 12px;
+            background-color: #ffc107;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .edit-button:hover {
+            background-color: #e0a800;
+        }
+        .pending-approval {
+            margin-top: 12px;
+            color: #ff6f61;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Articles</h1>
+    <div>
+        {% for article in articles %}
+        <div class="card">
+            <h2 class="card-title">{{ article.title }}</h2>
+            {% if article.status == 'approved' %}
+                <a href="{% url 'article_detail' article.id %}" class="read-more">Read More</a>
+            {% else %}
+                <span class="pending-approval">Pending Approval</span>
+            {% endif %}
+            <a href="{% url 'edit_article' article.id %}" class="edit-button">Edit</a>
+        </div>
+        {% empty %}
+        <p>No articles available yet.</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'doctor_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

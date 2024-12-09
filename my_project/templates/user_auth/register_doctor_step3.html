@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Step 3 - Practice Details</title>
+</head>
+<body>
+    <h1>Step 3/5 - Practice Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{ form.city.label }}: {{ form.city }}</p>
+        <p>{{ form.hospital.label }}: {{ form.hospital }}</p>
+
+        <h2>Areas of Interest</h2>
+        <div id="areas-of-interest-container"></div>
+        <button type="button" onclick="addAreaOfInterest()">Add Area of Interest</button>
+
+        <input type="hidden" name="areas_of_interest" id="areas-of-interest-field">
+
+        <p>{{ form.review_address.label }}: {{ form.review_address }}</p>
+        <p>{{ form.practice_days.label }}: {{ form.practice_days }}</p>
+        <p>{{ form.start_time.label }}: {{ form.start_time }}</p>
+        <p>{{ form.end_time.label }}: {{ form.end_time }}</p>
+        <p>{{ form.fee.label }}: {{ form.fee }}</p>
+        <p>{{ form.assistant_name.label }}: {{ form.assistant_name }}</p>
+        <p>{{ form.assistant_phone.label }}: {{ form.assistant_phone }}</p>
+
+        <button type="submit">Next</button>
+    </form>
+
+    <script>
+        let areasOfInterest = [];
+
+        function addAreaOfInterest() {
+            const interest = prompt("Enter Area of Interest:");
+            if (interest) {
+                areasOfInterest.push(interest);
+                updateAreasOfInterest();
+            }
+        }
+
+        function updateAreasOfInterest() {
+            const container = document.getElementById("areas-of-interest-container");
+            container.innerHTML = areasOfInterest.map(
+                (area, index) => `<p>${index + 1}. ${area}</p>`
+            ).join('');
+            document.getElementById("areas-of-interest-field").value = JSON.stringify(areasOfInterest);
+        }
+    </script>
+</body>
+</html>

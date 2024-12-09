@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Articles</title>
+</head>
+<body>
+    <h1>All Articles</h1>
+    <ul>
+        {% for article in articles %}
+        <li>
+            <h2>{{ article.title }}</h2>
+            <p>By: {{ article.doctor }}</p>
+            <a href="{% url 'article_detail' article.id %}">Read More</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

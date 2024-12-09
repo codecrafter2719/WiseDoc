@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create Article</title>
+    <!-- Include Quill styles -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Create Article</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Enter title here" required><br><br>
+        <div id="editor-container" style="height: 300px;"></div>
+        <textarea name="content" id="content" style="display:none;"></textarea>
+        <button type="submit" onclick="syncContent()">Submit for Review</button>
+    </form>
+    <a href="{% url 'doctor_dashboard' %}">Back to Dashboard</a>
+
+    <!-- Include Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script>
+        // Initialize Quill editor
+        const quill = new Quill('#editor-container', {
+            theme: 'snow', // or 'bubble'
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }], // Headings
+                    ['bold', 'italic', 'underline', 'strike'], // Formatting
+                    [{ 'align': [] }], // Alignment (left, center, right, justify)
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }], // Lists
+                    ['blockquote', 'code-block'], // Blockquotes and code
+                    [{ 'script': 'sub' }, { 'script': 'super' }], // Subscript/Superscript
+                    ['image', 'video', 'link'], // Media (images, videos, links)
+                    ['clean'], // Remove formatting
+                ]
+            }
+        });
+
+        // Sync Quill content with the hidden textarea before submission
+        function syncContent() {
+            document.getElementById('content').value = quill.root.innerHTML;
+        }
+    </script>
+</body>
+</html>

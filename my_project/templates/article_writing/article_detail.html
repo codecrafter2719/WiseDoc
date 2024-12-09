@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p>Author: {{ article.doctor.username }}</p>
+    <p>Published On: {{ article.created_at|date:"F d, Y" }}</p>
+    <div>
+        {{ article.content|safe }}
+    </div>
+    <a href="{% url 'all_articles' %}">Back to All Articles</a>
+</body>
+</html>
