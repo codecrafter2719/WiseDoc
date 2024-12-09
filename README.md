@@ -1,11 +1,11 @@
 Django Project
-Step1: 
+**Step1**: 
 Create Virtual environment 
-Step2:
+**Step2**:
 Activate Environment
-Step3:
+**Step3**:
 Move to main directory
-Step4:
+**Step4**:
 Install dependencies
-Step5:
+**Step5**:
 run server
